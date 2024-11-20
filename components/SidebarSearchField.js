@@ -13,7 +13,7 @@ function Spinner({ active = true }) {
   );
 }
 
-export default function SidebarSearchField() {
+export default function SidebarSearchField({ search }) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -38,7 +38,7 @@ export default function SidebarSearchField() {
       </label>
       <input
         id="sidebar-search-input"
-        placeholder="Search"
+        placeholder={search}
         type="text"
         onChange={(e) => handleSearch(e.target.value)}
       />

@@ -4,9 +4,11 @@ import SidebarNoteList from "@/components/SidebarNoteList";
 import EditButton from "@/components/EditButton";
 import NoteListSkeleton from "@/components/NoteListSkeleton";
 import SidebarSearchField from "@/components/SidebarSearchField";
+import { getTranslations } from "next-intl/server";
 
 // 移除数据请求部，为 SidebarNoteList 添加 Suspense 以及 feedback UI NoteListSkeleton
 export default async function Sidebar() {
+  const t = await getTranslations("Basic");
   return (
     <>
       <section className="col sidebar">
@@ -24,8 +26,8 @@ export default async function Sidebar() {
           </section>
         </Link>
         <section className="sidebar-menu" role="menubar">
-          <SidebarSearchField />
-          <EditButton noteId={null}>New</EditButton>
+          <SidebarSearchField search={t("search")} />
+          <EditButton noteId={null}>{t("new")}</EditButton>
         </section>
         <nav>
           <Suspense fallback={<NoteListSkeleton />}>
